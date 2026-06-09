@@ -1,0 +1,492 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Geist:wght@100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+@import "tailwindcss";
+
+/* =================================================================
+   FRAMER DESIGN SYSTEM - NullTrace Implementation
+   ================================================================= */
+
+:root {
+  /* ── Brand & Accent ── */
+  --primary: #ffffff;
+  --on-primary: #000000;
+  --accent-blue: #0099ff; /* hyperlinks, focus rings, selection ONLY */
+
+  /* -- Layout -- */
+  --ink: #ffffff;
+  --ink-muted: #999999;
+
+  /* -- Shadows -- */
+  --canvas: #090909;
+  --surface-1: #141414;
+  --surface-2: #1c1c1c;
+  --hairline: #262626;
+  --hairline-soft: #1a1a1a;
+  --inverse-canvas: #ffffff;
+  --inverse-ink: #000000;
+
+  /* ── Brand Gradient (signature) ── */
+  --gradient-magenta: #d44df0;
+  --gradient-violet: #6a4cf5;
+  --gradient-orange: #ff7a3d;
+  --gradient-coral: #ff5577;
+
+  /* ── Semantic ── */
+  --semantic-success: #22c55e;
+  --destructive: #ef4444;
+
+  /* ── Spacing (5px base) ── */
+  --sp-hair: 1px;
+  --sp-xxs: 4px;
+ /* ----------------------------------------------------------------
+   CARDS & SURFACES
+   ---------------------------------------------------------------- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 15px;
+  --r-xl: 20px;
+  --r-xxl: 30px;
+  --r-pill: 100px;
+  --r-full: 9999px;
+
+  /* ── Compatibility (shadcn/ui) ── */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --muted: var(--surface-1);
+  --muted-foreground: var(--ink-muted);
+  --popover: var(--surface-1);
+  --popover-foreground: var(--ink);
+  --card: var(--surface-1);
+  --card-foreground: var(--ink);
+  --border: var(--hairline);
+  --input: var(--surface-1);
+  --primary-bg: var(--primary);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-1);
+  --secondary-foreground: var(--ink);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--ink);
+  --destructive-foreground: var(--primary);
+  --ring: var(--accent-blue);
+  --radius: var(--r-md);
+}
+
+@theme inline {
+  --color-background: var(--canvas);
+  --color-foreground: var(--ink);
+  --color-muted: var(--surface-1);
+  --color-muted-foreground: var(--ink-muted);
+  --color-popover: var(--surface-1);
+  --color-popover-foreground: var(--ink);
+  --color-card: var(--surface-1);
+  --color-card-foreground: var(--ink);
+  --color-border: var(--hairline);
+  --color-input: var(--surface-1);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--on-primary);
+  --color-secondary: var(--surface-1);
+  --color-secondary-foreground: var(--ink);
+  --color-accent: var(--surface-2);
+  --color-accent-foreground: var(--ink);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--primary);
+  --color-ring: var(--ring);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* =================================================================
+   CSS RESET & BASE
+   ================================================================= */
+
+* {
+  box-sizing: border-box;
+  border-color: var(--hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv01" 1, "cv05" 1, "cv09" 1, "cv11" 1, "ss03" 1, "ss07" 1, "dlig" 1;
+}
+
+::selection {
+  background-color: rgba(0, 153, 255, 0.25);
+  color: var(--ink);
+}
+
+/* =================================================================
+   TYPOGRAPHY
+   ================================================================= */
+
+/* Display family - GT Walsheim substitute */
+.display-xxl, .display-xl, .display-lg, .display-md {
+  font-family: 'Mona Sans', 'Geist', 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+}
+
+.display-xxl {
+  font-size: clamp(64px, 10vw, 140px);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -6.5px;
+}
+.display-xl {
+  font-size: clamp(52px, 7.5vw, 108px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -4.5px;
+  font-feature-settings: "ss02" 1;
+}
+.display-lg {
+  font-size: clamp(42px, 6vw, 82px);
+  font-weight: 500;
+  line-height: 1.00;
+  letter-spacing: -3.5px;
+  font-feature-settings: "ss02" 1;
+}
+.display-md {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 500;
+  line-height: 1.13;
+  letter-spacing: -1.0px;
+}
+
+/* Inter hierarchy */
+.headline {
+  font-family: 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.20;
+  letter-spacing: -0.8px;
+  font-feature-settings: "cv05" 1;
+}
+.subhead {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.30;
+  letter-spacing: -0.01px;
+  font-feature-settings: "cv11" 1;
+}
+.body-lg {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.30;
+  letter-spacing: -0.18px;
+  font-feature-settings: "cv11" 1;
+}
+.body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.30;
+  letter-spacing: -0.15px;
+  font-feature-settings: "cv11" 1;
+}
+.body-sm {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.40;
+  letter-spacing: -0.14px;
+  font-feature-settings: "cv11" 1;
+}
+.caption {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.20;
+  letter-spacing: -0.13px;
+  font-feature-settings: "cv11" 1;
+}
+.micro {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.20;
+  letter-spacing: -0.12px;
+  font-feature-settings: "cv11" 1;
+}
+
+/* ----------------------------------------------------------------
+   BUTTONS - White pill on dark. Never use accent-blue as fill.
+   ---------------------------------------------------------------- */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--r-pill);
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.14px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.88);
+  color: var(--on-primary);
+  transform: scale(0.98);
+}
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--surface-1);
+  color: var(--ink);
+  border-radius: var(--r-pill);
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.14px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+.btn-secondary:hover {
+  background-color: var(--surface-2);
+  color: var(--ink);
+}
+.btn-secondary:active {
+  transform: scale(0.96);
+}
+
+.btn-translucent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--surface-2);
+  color: var(--ink);
+  border-radius: var(--r-xxl);
+  padding: 12px 24px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.14px;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+.btn-translucent:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+}
+
+.btn-icon-circular {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-1);
+  color: var(--ink);
+  border-radius: var(--r-full);
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.15s ease;
+}
+.btn-icon-circular:hover {
+  background-color: var(--surface-2);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CARDS & CONTAINERS
+   ════════════════════════════════════════════════════════════════ */
+
+/* Pricing / generic card - surface-1 lift */
+.framer-card {
+  background-color: var(--surface-1);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  transition: all 0.2s ease;
+}
+
+/* Featured pricing card - surface-2 lift */
+.framer-card-featured {
+  background-color: var(--surface-2);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  transition: all 0.2s ease;
+}
+
+/* Product mockup tile - level-2 light-edge */
+.mockup-tile {
+  background-color: var(--surface-1);
+  border-radius: var(--r-xl);
+  padding: 24px;
+  box-shadow:
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.10),
+    0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Template card */
+.template-card {
+  background-color: var(--surface-1);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+.template-card:hover {
+  background-color: var(--surface-2);
+}
+
+/* =================================================================
+   DARK SPOTLIGHT CARDS
+   All modules standard size and dark colors
+   ================================================================= */
+
+.spotlight-dark {
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  color: var(--ink);
+  border-radius: var(--r-xxl);
+  padding: 40px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.spotlight-dark:hover {
+  background-color: var(--surface-2);
+  transform: translateY(-3px);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* =================================================================
+   INPUTS & FORMS
+   ================================================================= */
+
+.framer-input {
+  background-color: var(--surface-1);
+  color: var(--ink);
+  border-radius: var(--r-md);
+  padding: 10px 14px;
+  border: 1px solid var(--hairline);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.30;
+  letter-spacing: -0.15px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+}
+.framer-input:hover {
+  border-color: #3a3a3a;
+}
+.framer-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px rgba(0, 153, 255, 0.15);
+}
+.framer-input.error {
+  border-color: var(--destructive);
+}
+.framer-input::placeholder {
+  color: var(--ink-muted);
+}
+
+/* Fix autofill colors in Webkit browsers */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--canvas) inset !important;
+    -webkit-text-fill-color: var(--ink) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ----------------------------------------------------------------
+   LINKS - accent-blue on hover only
+   ---------------------------------------------------------------- */
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FAQ ROW
+   ════════════════════════════════════════════════════════════════ */
+
+.faq-row {
+  background-color: var(--canvas);
+  border-radius: var(--r-md);
+  padding: 24px;
+  border-bottom: 1px solid var(--hairline-soft);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.faq-row:hover {
+  background-color: var(--surface-1);
+}
+.faq-row:last-child {
+  border-bottom: none;
+}
+
+/* =================================================================
+   UTILITIES
+   ================================================================= */
+
+.section-padding {
+  padding: var(--sp-section) 0;
+}
+
+.text-ink {
+  color: var(--ink);
+}
+.text-ink-muted {
+  color: var(--ink-muted);
+}
+.text-accent-blue {
+  color: var(--accent-blue);
+}
+
+/* =================================================================
+   THEME VARIABLES
+   ================================================================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInSlow {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.animate-fade-in-slow {
+  animation: fadeInSlow 0.8s ease-out forwards;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LEAFLET DARK MODE
+   ════════════════════════════════════════════════════════════════ */
+
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
